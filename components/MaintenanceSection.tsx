@@ -1,0 +1,37 @@
+import React from 'react';
+import { MAINTENANCE_PLAN } from '../constants';
+import { IconServer, IconCheck } from './Icons';
+
+const MaintenanceSection = () => {
+  return (
+    <div className="mt-16 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      <div className="bg-slate-50 p-6 border-b border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+            <IconServer className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-slate-900">Ongoing Maintenance & Support</h3>
+            <p className="text-sm text-slate-500">Optional for Offer 1, Recommended for Offers 2</p>
+          </div>
+        </div>
+        <div className="text-xl font-bold text-slate-900 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+          {MAINTENANCE_PLAN.cost} <span className="text-sm text-slate-400 font-normal"></span>
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {MAINTENANCE_PLAN.features.map((feature, idx) => (
+            <div key={idx} className="flex items-center gap-2 text-sm text-slate-700">
+              <IconCheck className="w-4 h-4 text-indigo-500" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MaintenanceSection;
