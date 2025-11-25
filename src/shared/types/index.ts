@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Shared TypeScript types for the application
+ * @module shared/types
+ */
+
 export interface FeatureItem {
   text: string;
   isPremium?: boolean;
@@ -6,6 +11,11 @@ export interface FeatureItem {
 export interface Section {
   title: string;
   items: FeatureItem[];
+}
+
+export interface Guarantee {
+  title: string;
+  text: string;
 }
 
 export interface Offer {
@@ -23,18 +33,20 @@ export interface Offer {
   coreFeatures: FeatureItem[];
   advancedFeatures?: Section[];
   benefits: string[];
-  guarantee?: {
-    title: string;
-    text: string;
-  };
-  secondaryGuarantee?: {
-    title: string;
-    text: string;
-  };
+  guarantee?: Guarantee;
+  secondaryGuarantee?: Guarantee;
   buttonText: string;
 }
 
 export interface MaintenancePlan {
   cost: string;
   features: string[];
+}
+
+export interface ProposalMeta {
+  clientName: string;
+  preparedBy: string;
+  date: string;
+  title: string;
+  subtitle: string;
 }

@@ -1,13 +1,30 @@
-import React from 'react';
-import { MAINTENANCE_PLAN } from '../constants';
-import { IconServer, IconCheck } from './Icons';
+/**
+ * @fileoverview Maintenance section component displaying support plan details
+ * @module features/proposal/components/MaintenanceSection
+ */
 
-const MaintenanceSection = () => {
+import React, { ReactElement } from 'react';
+import { MAINTENANCE_PLAN } from '../../../shared/constants';
+import { IconServer, IconCheck } from '../../../shared/components/ui/Icons';
+
+/**
+ * Maintenance section component that displays the ongoing support plan.
+ *
+ * Shows the monthly maintenance cost and all included features
+ * with clear visual hierarchy and iconography.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <MaintenanceSection />
+ * ```
+ */
+const MaintenanceSection = (): ReactElement => {
   return (
     <div className="mt-16 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
       <div className="bg-slate-50 p-6 border-b border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+          <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
             <IconServer className="w-6 h-6" />
           </div>
           <div>
@@ -19,12 +36,12 @@ const MaintenanceSection = () => {
           {MAINTENANCE_PLAN.cost} <span className="text-sm text-slate-400 font-normal"></span>
         </div>
       </div>
-      
+
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {MAINTENANCE_PLAN.features.map((feature, idx) => (
             <div key={idx} className="flex items-center gap-2 text-sm text-slate-700">
-              <IconCheck className="w-4 h-4 text-indigo-500" />
+              <IconCheck className="w-4 h-4 text-blue-500" />
               <span>{feature}</span>
             </div>
           ))}

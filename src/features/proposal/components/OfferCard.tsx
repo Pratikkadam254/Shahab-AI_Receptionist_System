@@ -1,38 +1,57 @@
-import React, { useState } from 'react';
-import { Offer } from '../types';
-import { IconCheck, IconClock, IconShield, IconUsers, IconZap, IconChevronDown, IconChevronUp } from './Icons';
+/**
+ * @fileoverview Offer card component displaying proposal tier details
+ * @module features/proposal/components/OfferCard
+ */
+
+import React, { useState, ReactElement } from 'react';
+import { Offer } from '../../../shared/types';
+import { IconCheck, IconClock, IconShield, IconUsers, IconZap, IconChevronDown, IconChevronUp } from '../../../shared/components/ui/Icons';
 
 interface OfferCardProps {
+  /** The offer data to display */
   offer: Offer;
+  /** Whether to show detailed technical information */
   isDetailedView: boolean;
 }
 
-const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
+/**
+ * Offer card component that displays a single proposal tier.
+ *
+ * Features responsive design with mobile expand/collapse functionality.
+ * Highlights recommended tiers and displays pricing, timeline, and features.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <OfferCard offer={offerData} isDetailedView={false} />
+ * ```
+ */
+const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }): ReactElement => {
   const isPaid = offer.priceDisplay !== "FREE";
   const [expandedMobile, setExpandedMobile] = useState(false);
 
   return (
-    <div 
+    <div
       className={`relative flex flex-col h-full rounded-2xl border transition-all duration-300 ${
-        offer.highlight 
-          ? 'border-indigo-600 bg-white shadow-xl scale-[1.02] z-10' 
+        offer.highlight
+          ? 'border-blue-600 bg-white shadow-xl scale-[1.02] z-10'
           : 'border-slate-200 bg-white shadow-md hover:shadow-lg'
       }`}
     >
       {offer.highlight && (
         <div className="absolute -top-4 left-0 right-0 flex justify-center">
-          <span className="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+          <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
             Recommended
           </span>
         </div>
       )}
 
       {/* Header Section */}
-      <div className={`p-6 ${offer.highlight ? 'bg-indigo-50/50' : ''} rounded-t-2xl`}>
+      <div className={`p-6 ${offer.highlight ? 'bg-blue-50/50' : ''} rounded-t-2xl`}>
         <div className="text-xs font-bold text-slate-500 tracking-wider mb-2 uppercase">{offer.tierName}</div>
         <h3 className="text-xl font-bold text-slate-900">{offer.title}</h3>
         <p className="text-sm text-slate-500 mb-4">{offer.subtitle}</p>
-        
+
         <div className="mb-4">
           <div className="flex items-baseline">
             <span className="text-4xl font-extrabold text-slate-900">{offer.priceDisplay}</span>
@@ -41,22 +60,22 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
         </div>
 
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-1">
-          <IconClock className="w-4 h-4 text-indigo-500" />
+          <IconClock className="w-4 h-4 text-blue-500" />
           <span>{offer.timeline}</span>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
-          <IconUsers className="w-4 h-4 text-indigo-500" />
+          <IconUsers className="w-4 h-4 text-blue-500" />
           <span className="truncate">{offer.ownership}</span>
         </div>
 
-        <p className="text-sm text-slate-600 italic border-l-2 border-indigo-200 pl-3 mb-6">
+        <p className="text-sm text-slate-600 italic border-l-2 border-blue-200 pl-3 mb-6">
           "{offer.description}"
         </p>
 
         <button className={`w-full py-3 rounded-lg font-semibold transition-colors duration-200 ${
-          offer.highlight 
-            ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-200' 
-            : isPaid 
+          offer.highlight
+            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-200'
+            : isPaid
               ? 'bg-slate-800 text-white hover:bg-slate-900'
               : 'bg-white border-2 border-slate-200 text-slate-700 hover:border-slate-300'
         }`}>
@@ -66,9 +85,9 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
 
       {/* Mobile Toggle Button (Visible only on small screens) */}
       <div className="md:hidden px-6 pb-2">
-         <button 
+         <button
            onClick={() => setExpandedMobile(!expandedMobile)}
-           className="flex items-center justify-center w-full text-sm text-indigo-600 font-medium py-2"
+           className="flex items-center justify-center w-full text-sm text-blue-600 font-medium py-2"
          >
            {expandedMobile ? 'Hide Details' : 'Show Details'}
            {expandedMobile ? <IconChevronUp className="w-4 h-4 ml-1"/> : <IconChevronDown className="w-4 h-4 ml-1"/>}
@@ -77,7 +96,7 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
 
       {/* Content Section - Responsive Visibility */}
       <div className={`flex-1 p-6 space-y-6 ${expandedMobile ? 'block' : 'hidden md:block'}`}>
-        
+
         {/* Core Features */}
         <div>
           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Core Features</h4>
@@ -96,7 +115,7 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
           <div className="pt-4 border-t border-slate-100 animate-fadeIn">
             {offer.advancedFeatures.map((section, idx) => (
               <div key={idx} className="mb-6">
-                <h4 className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h4 className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-3 flex items-center gap-2">
                   <IconZap className="w-3 h-3" /> {section.title}
                 </h4>
                 <ul className="space-y-2">
@@ -118,7 +137,7 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer, isDetailedView }) => {
            <ul className="space-y-2">
              {offer.benefits.map((benefit, idx) => (
                <li key={idx} className="flex items-start text-sm text-slate-700 font-medium">
-                 <span className="text-indigo-500 mr-2">★</span>
+                 <span className="text-blue-500 mr-2">★</span>
                  {benefit}
                </li>
              ))}

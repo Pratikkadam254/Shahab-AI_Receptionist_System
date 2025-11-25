@@ -1,6 +1,11 @@
-import { Offer, MaintenancePlan } from './types';
+/**
+ * @fileoverview Application-wide constants and configuration
+ * @module shared/constants
+ */
 
-export const PROPOSAL_META = {
+import { Offer, MaintenancePlan, ProposalMeta } from '../types';
+
+export const PROPOSAL_META: ProposalMeta = {
   clientName: "Shahab",
   preparedBy: "Pratik",
   date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
@@ -100,11 +105,11 @@ export const OFFERS: Offer[] = [
     ],
     guarantee: {
       title: "Delivery Guarantee",
-      text: "If scope isn’t delivered in 6 weeks, you get 1 free month of maintenance."
+      text: "If scope isn't delivered in 6 weeks, you get 1 free month of maintenance."
     },
     secondaryGuarantee: {
       title: "Performance Guarantee",
-      text: "If automation doesn’t hit 60% in 14 days, we fix it free until it does."
+      text: "If automation doesn't hit 60% in 14 days, we fix it free until it does."
     }
   },
   {
@@ -155,7 +160,7 @@ export const OFFERS: Offer[] = [
     ],
     guarantee: {
       title: "Delivery Guarantee",
-      text: "If scope isn’t delivered in 7 weeks, you get 1 free month of maintenance."
+      text: "If scope isn't delivered in 7 weeks, you get 1 free month of maintenance."
     }
   }
 ];
